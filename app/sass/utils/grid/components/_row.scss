@@ -1,0 +1,17 @@
+.row {
+  display: flex;
+  flex: 0 1 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: (-$gl-gutter) (-$gl-gutter/2) ($gl-gutter);
+  padding: 0;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+
+  @include variant(no-gutters) {
+    margin: 0;
+  }
+}

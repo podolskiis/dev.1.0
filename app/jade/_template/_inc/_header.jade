@@ -1,0 +1,20 @@
+header.s-header
+  .container
+    .row
+      .col.col--sm-fill
+        h2.b-logo
+          a.b-logo__link(href="/")
+            img.b-logo__img(src="images/theme/logo.png" alt="logo")
+            span.b-logo__title.hide подпись к логотипу
+      .col.col--sm-fit
+        ul
+          li
+            a.b-phone(href="tel:+71234567890")
+              span.b-phone__cod
+                | +7 (123)
+              |  
+              span.b-phone__num
+                | 456-78-90
+          li
+            +email('email@dom.ru','icon-email').b-email
+    +multiMenu(menu_main,'b-main-menu','submenu')

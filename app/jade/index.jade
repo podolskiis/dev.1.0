@@ -1,0 +1,36 @@
+extends _template/_base/_main.jade
+block mixins
+  +pageTitle('Главная')
+block variables
+  - modals = false
+  - bodyClasses = ['add-class_1']
+block content
+  .s-default
+    .container
+      .flex-row      
+      - for (var x = 0; x < 1; x++)
+        div
+          | С другой стороны дальнейшее развитие различных форм деятельности играет важную роль в формировании систем массового участия. Значимость этих проблем настолько очевидна, что реализация намеченных плановых заданий требуют от нас анализа дальнейших направлений развития.
+        p
+          | Таким образом дальнейшее развитие различных форм деятельности представляет собой интересный эксперимент проверки дальнейших направлений развития. Товарищи! сложившаяся структура организации требуют определения и уточнения новых предложений.
+        p
+          img(src="//lorempixel.com/400/200" width="" height="" alt="").img-responsive
+
+        //- .row
+          .col.col--xs-12.col--sm-6.col--md-4*12>.demo{$}
+
+      form.form.form--default
+        .form__item
+          label.form__label
+            | Ваше имя
+          br
+          input(name="name" type="text" placeholder="Ваше имя" required)
+        .form__item
+          input(name="email" type="email" placeholder="Ваш e-mail" required)
+        .form__item
+          input.phone.phone_ru(name="phone" type="tel" placeholder="Ваш телефон" required)
+        .form__item
+          textarea.w100p( rows="5" name="msg" placeholder="Сообщение" required)
+        .form__item.form__item--btn
+          button.btn.btn--default.lh-34(type="submit")
+            | submit

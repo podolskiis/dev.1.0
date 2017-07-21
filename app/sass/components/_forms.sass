@@ -1,0 +1,63 @@
+input,textarea
+  @include placeholders
+    color: #aaa
+    opacity: 1
+  &:focus
+    @include placeholders
+      opacity: .5
+  &[class*="js-mask"]
+    &:hover, &:focus
+      @include placeholders
+        opacity: 0
+
+.form--default
+  $inputHt:   34
+  $inputPgWt: 10
+  $inputPgHt: 5
+  $inputBdWt: 1
+  $formItemMg: 10
+  #{$all-text-inputs}
+    outline: none
+    -webkit-appearance: none
+    box-shadow: none
+    border-radius: 0
+    margin: 0
+    padding: ems($inputPgHt) ems($inputPgWt)
+    line-height: ems($inputHt - $inputPgHt*2 - $inputBdWt*2)
+    height: ems($inputHt)
+    font-family: $tm_ff_d
+    font-size: $tm_fz_d
+    font-weight: $tm_fw_d
+    border-width: $inputBdWt+px
+    border-style: solid
+    color: $tm_color_d
+    // EDIT
+    background: #fff
+    border-color: #ddd
+    &:focus
+      border-color: #aaa
+  html.touch &
+    // Отключение автоматического Увеличение ввода - Safari на iPhone
+    #{$all-text-inputs}
+      font-size: 16px
+  textarea
+    min-height: ems(100)
+    height: auto
+    line-height: 1.3
+  .form
+    &__label
+      display: inline-block
+      margin-bottom: ems(3)
+    &__item
+      margin-top: ems($formItemMg)
+      &:first-child
+        margin-top: 0
+      &--btn
+        margin-top: ems($formItemMg*2)
+
+  // VALIDATE
+  input.error,textarea.error
+    border-color: red !important
+    box-shadow: 0 0 ems(3) red !important
+  label.error
+    display: none !important

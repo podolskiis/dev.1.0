@@ -1,0 +1,81 @@
+//- PROJECT BASE MIXINS
+mixin multiSubmenu(data, navСlass)
+  ul(class='#{navСlass}-submenu')
+    each item in data
+      li(class='#{navСlass}-submenu__item', class={active: activeMenu[1] === item.val})
+        = '\n'
+        a(href=item.url, class='#{navСlass}-submenu__link')
+          span= item.val
+        if (item.submenu)
+          div(class='#{navСlass}__submenu')
+            +multiSubmenu(item.submenu, navСlass)
+mixin multiMenu(data, navСlass, dropdown)
+  //- Example: +multiMenu(menu_obj, 'class-menu')
+  nav(class='#{navСlass}')&attributes(attributes)
+    ul(class='#{navСlass}__list')
+      each item in data
+        - var itemClasses = [navСlass+'__item']
+        if (item.submenu && dropdown)
+          - itemClasses.push(itemClasses[0] + '_dropdown')
+        li( class=itemClasses, class={active: activeMenu[0] === item.val} )
+          = '\n'
+          a(href=item.url, class='#{navСlass}__link')
+            span= item.val
+          if (item.submenu && dropdown)
+            div(class='#{navСlass}__submenu')
+              +multiSubmenu(item.submenu, navСlass)
+  //- Навигационная цепочка
+mixin breadcrumb(...items)
+  ul&attributes(attributes)
+    each item, i in items
+      li
+        = '\n'
+        if (i == items.length - 1)
+          span= item
+        else
+          a(href="#")= item
+
+//- HELPERS MIXINS
+mixin jsonMenu(data)
+  ul&attributes(attributes)
+    each item in data
+      li
+        a(href=item.url)
+          span=item.val
+mixin email(email,icon)
+  = '\n'
+  a(href="mailto:"+email, target="_blank", class!=attributes.class)
+    if icon
+      i(class=icon)
+      | 
+    | #{email}
+mixin imgRadius(attr)
+  = '\n'
+  span&attributes(attributes)
+    span
+      img(src=attr alt="")
+mixin navObj(obj)
+  ul&attributes(attributes)
+    each link, val in obj
+      li
+        = '\n'
+        a(href=link)= val
+mixin ulLink(...items)
+  ul&attributes(attributes)
+    each item in items
+      li
+        = '\n'
+        a(href="#")= item
+mixin ulLinkModifier(item, modifier, ...items)
+  ul(class= modifier)&attributes(attributes)
+    each val in items
+      if (item == 'span')
+        li(class= modifier+'__item')
+          span(class='#{modifier}__val')!= val
+      else if (item == 'a')
+        li(class= modifier+'__item')
+          a(href="#" class= modifier+'__val')!= val
+      else
+        li(class='#{modifier}__item')!= val
+
+//- PROJECT CODES MIXINS

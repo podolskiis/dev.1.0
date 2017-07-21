@@ -1,0 +1,34 @@
+include ../_variables.jade
+include _mixins.jade
+include ../_utils.jade
+doctype html
+html(lang="ru")
+  //- CONNECT HEAD
+  include _head.jade
+    block styles
+      include ../_inc/_links.jade
+  //- CONNECT BODY
+  body.page(class=bodyClasses)
+    // PAGE-WRAP START 
+    .page-wrap
+      if header
+        // HEADER START 
+        include ../_inc/_header.jade
+        // HEADER END 
+      if main
+        // MAIN START 
+        main.s-main
+          block content
+        // MAIN END 
+      //- CONNECT FOOTER
+      if footer
+        // FOOTER START 
+        include ../_inc/_footer.jade
+        // FOOTER END 
+    // PAGE-WRAP END 
+    if modals
+      // MODALS START 
+      .hidden
+        include ../_inc/_modals.jade
+      // MODALS END 
+    include ../_inc/_scripts.jade

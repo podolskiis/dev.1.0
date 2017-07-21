@@ -1,0 +1,36 @@
+{
+  "menu_main": [
+    {
+      "val": "Главная",
+      "url": "index.html"
+    },
+    {
+      "val": "О компании",
+      "url": "about.html",
+      "submenu": [
+        {
+          "val": "menu-item_2.1",
+          "url": "2.1.html"
+        },
+        {
+          "val": "menu-item_2.2",
+          "url": "2.2.html",
+          "submenu": [
+            {
+              "val": "menu-item_3.1",
+              "url": "3.1.html"
+            },
+            {
+              "val": "menu-item_3.2",
+              "url": "3.2.html"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "val": "Контакты",
+      "url": "contacts.html"
+    }
+  ]
+}

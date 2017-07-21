@@ -1,0 +1,487 @@
+$srcImg:  '../images/theme/';
+$srcFont: '../fonts/';
+
+// Clearfix
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+// TRANSITION
+  @mixin tsn($speed: .15) {
+    transition:
+      box-shadow $speed+s,
+      background-color $speed+s,
+      border-color $speed+s,
+      color $speed+s
+  }
+  @mixin tsnOps($speed: .15) {
+    transition: opacity $speed+s
+  }
+  @mixin tsnAll($speed: .15) {
+    transition: all $speed+s
+  }
+  @mixin tsnOff() {
+    transition: none !important
+  }
+  @mixin tsnSvg($val, $speed: .15) {
+    transition: $val $speed+s
+  }
+// BACKGROUND
+  @mixin bg($img,$x:0,$y:0,$c:transparent,$r:no-repeat) {
+    background: url('#{$srcImg}#{$img}') $c $x $y $r }
+  @mixin bgImg($img) {
+    background-image: url('#{$srcImg}#{$img}')}
+  @mixin bgData($img,$x:0,$y:0,$c:transparent,$r:no-repeat){
+    background: url('#{$srcImg}data:image/png;base64,#{$img}') $c $x $y $r }
+// FOOTER
+  // push footer
+  @mixin footerFixed($h, $t:0) {
+    html,body {
+      height: 100%;
+    }
+    body {
+      &>.page-wrap {
+        min-height: 100%;
+        &:after {
+          content: ' ';
+          display: block;
+          height: $h+$t;
+        }
+      }
+      &>.s-footer {
+        height: $h;
+        margin-top: -$h;
+      }
+    }
+  }
+// IMAGES
+  @mixin icons($url:'#{$srcImg}icons.png') {
+    background-image: url($url);
+    background-position: 100% 100%;
+    background-repeat: no-repeat;
+    display: inline-block;
+    position: relative;
+    top: -1px;
+    vertical-align: middle;
+  }
+  @mixin icomoon() {
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  @mixin imgFit($h:200px, $bg:#fff) {
+    background: $bg;
+    display: block;
+    overflow: hidden;
+    text-align: center;
+    font-size: 0;
+    height: $h;
+    line-height: $h;
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+  @mixin imgZoom($op:.7) {
+    overflow: hidden;
+    display: inline-block;
+    img {
+      transition: all 0.35s;
+    }
+    &:hover img {
+      transform: scale(1.1);
+      opacity: $op;
+    }
+  }
+  @mixin imgRadius($z:100px,$bd_z:5px,$bd_c:#e00) {
+    border: $bd_z solid $bd_c;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 50%;
+    >* {
+      width: $z;
+      height: $z;
+      display: block;
+      overflow: hidden;
+      border-radius: 50%;
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+        vertical-align: middle;
+      }
+    }
+  }
+  @mixin imgCenter($w:200px,$h:200px) {
+    position: relative;
+    overflow: hidden;
+    width: $w;
+    height: $h;
+    img {
+      margin: auto;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
+// SIZE
+  @mixin z($value) {
+    $width: nth($value, 1);
+    $height: $width;
+    @if length($value) > 1 {
+      $height: nth($value, 2);
+    }
+    @if is-size($height) {
+      height: $height;
+    } @else {
+      @warn "`#{$height}` is not a valid length for the `$height` parameter in the `size` mixin.";
+    }
+    @if is-size($width) {
+      width: $width;
+    } @else {
+      @warn "`#{$width}` is not a valid length for the `$width` parameter in the `size` mixin.";
+    }
+  }
+// BORDER
+  // border-link
+  @mixin borderLink($type: dotted, $color: $tm_color_link_a, $hover: $tm_color_link_b) {
+    border-width: 0 0 1px;
+    display: inline-block;
+    text-decoration: none !important;
+    line-height: 0.9em;
+    color: $color;
+    border-color: $color;
+    @if $type == solid {
+      border-style: solid;
+    } @else if $type == dashed {
+      border-style: dashed;
+    } @else {
+      border-style: dotted;
+    }
+    &:hover {
+      color: $hover;
+      border-color: $hover;
+    }
+  }
+  // link effects
+  @mixin borderLinkEffLineCenter($z:1px, $color:$tm_color_link_b, $tsn:.3) {
+    position: relative;
+    text-decoration: none;
+    @include tsn($tsn);
+    &::before {
+      background: $color;
+      height: $z;
+      content: "";
+      display: block;
+      position: absolute;
+      left: 50%;
+      right: 50%;
+      top: 1.2em;
+      @include tsnAll($tsn);
+    }
+    &:hover {
+      color: $color;
+      &::before {
+        left: 0;
+        right: 0;
+      }
+    }
+  }
+  // border-radius
+  @mixin br($r:50%) {
+    border-radius: $r
+  }
+// FORM
+  // placehold
+  @mixin placeholders {
+    $placeholders: ":-webkit-input" ":-moz" "-moz" "-ms-input";
+    @each $placeholder in $placeholders {
+      &:#{$placeholder}-placeholder {
+        @content;
+      }
+    }
+  }
+  // @type List
+  $all-text-inputs: 'input[type="color"]',
+                    'input[type="date"]',
+                    'input[type="datetime"]',
+                    'input[type="datetime-local"]',
+                    'input[type="email"]',
+                    'input[type="month"]',
+                    'input[type="number"]',
+                    'input[type="password"]',
+                    'input[type="search"]',
+                    'input[type="tel"]',
+                    'input[type="text"]',
+                    'input[type="time"]',
+                    'input[type="url"]',
+                    'input[type="week"]',
+                    'input:not([type])',
+                    'textarea';
+// LINEAR-GRADIENT
+  @mixin lgr($t,$b) {
+    background-color: $b;
+    background-image: linear-gradient(to bottom, $t 0%,$b 100%);
+  }
+// FONTS
+  // Font-face all format
+  @mixin font($ff, $url) {
+    @font-face {
+      font-family: $ff;
+      src: url(#{$srcFont+$url}.eot);
+      src: url(#{$srcFont+$url}.eot?#iefix) format('embedded-opentype'),
+           url(#{$srcFont+$url}.woff) format('woff'),
+           url(#{$srcFont+$url}.woff2) format('woff2'),
+           url(#{$srcFont+$url}.ttf) format('truetype'),
+           url(#{$srcFont+$url}.svg##{$ff}) format('svg');
+      font-weight: normal;
+      font-style: normal;
+    }
+  }
+  // Font-face woff format
+  @mixin woffFont($ff, $url, $fw, $fs: normal) {
+    $styleMin: '';
+    @each $style in $fs {
+      @if $style == 'i' or $style == italic {
+        $styleMin: 'i';
+        $style: italic;
+      } @else {
+        $style: normal;
+      }
+      $path: ($srcFont+$url) + '/' + ($fw+$styleMin) + '.woff';
+      @font-face {
+        font-family: $ff;
+        font-style: $style;
+        font-weight: $fw;
+        src: local('☺'), url($path) format('woff'), url($path+2) format('woff2');
+      }
+    }
+  }
+
+// Reset font
+@mixin ffn {
+  font-weight: normal;
+  font-style: normal;
+}
+
+// Multi title font-size
+@mixin titleSize($arr) {
+  $i: 1;
+  @each $size in $arr {
+    h#{$i}, .h#{$i} {
+      font-size: ems($size);
+    }
+    $i: $i+1;
+  }
+}
+
+// MENU STYLES
+@mixin menuJustify($lh:20px){
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: justify;
+  height: $lh;
+  line-height: $lh;
+  >*{
+    line-height: $tm_lh_d;
+    display: inline;
+    a{
+      display: inline-block;}
+  }
+  &:after{
+    content: ".";
+    margin-left: 100%;
+    display: inline-block;
+    height: 0;
+    overflow: hidden; }
+}
+
+// Multi Indents
+@mixin mi($task,$px,$arr) {
+  @each $size in $arr {
+    .#{$task + $size} {
+      @if $task == 'lh-' {
+        line-height: pxEm($size,$px) !important;
+      }
+      @if $task == 'fz-' {
+        font-size: pxEm($size,$px) !important;
+      }
+      @if $task == 'ht-' {
+        height: pxEm($size,$px) !important;
+      }
+      @if $task == 'mg-t-' {
+        margin-top: pxEm($size,$px) !important;
+      }
+      @if $task == 'mg-b-' {
+        margin-bottom: pxEm($size,$px) !important;
+      }
+      @if $task == 'mg-tb-' {
+        margin-top: pxEm($size,$px) !important;
+        margin-bottom: pxEm($size,$px) !important;
+      }
+      @if $task == 'mg-lr-' {
+        margin-left: pxEm($size,$px) !important;
+        margin-right: pxEm($size,$px) !important;
+      }
+      @if $task == 'pg-t-' {
+        padding-top: pxEm($size,$px) !important;
+      }
+      @if $task == 'pg-b-' {
+        padding-bottom: pxEm($size,$px) !important;
+      }
+      @if $task == 'pg-tb-' {
+        padding-top: pxEm($size,$px) !important;
+        padding-bottom: pxEm($size,$px) !important;
+      }
+      @if $task == 'pg-l-' {
+        padding-left: pxEm($size,$px) !important;
+      }
+      @if $task == 'pg-r-' {
+        padding-right: pxEm($size,$px) !important;
+      }
+      @if $task == 'pg-lr-' {
+        padding-left: pxEm($size,$px) !important;
+        padding-right: pxEm($size,$px) !important;
+      }
+    }
+    @if $task == 'list-items-mgt-' {
+      & >* {
+        margin-top: pxEm($size,$px) !important;
+        &:first-child {
+          margin-top: 0 !important;
+        }
+      }
+    }
+  }
+}
+
+// Clear list
+@mixin ulReset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// Indent (col)
+@mixin itemsMgLeft($size) {
+  margin-left: -$size;
+  >* { margin-left: $size; }
+}
+// Indent (row)
+@mixin list-items-mgt($size) {
+  >* {
+    margin-top: $size;
+    &:first-child { margin-top: 0; }
+  }
+}
+
+// Grid Inline
+@mixin itemsInline($size:false) {
+  @include itemsReset;
+  @if $size {
+    @include itemsMgLeft($size); }
+  letter-spacing: -0.3em;
+  line-height: 1;
+  >* {
+    line-height: $tm_lh_d;
+    display: inline-block;
+    vertical-align: top;
+    min-height: 1px;
+    letter-spacing: normal;
+  }
+}
+
+// Grid Table
+@mixin tbl {
+  $root: &;
+  &__list {
+    display: table;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 0;
+    >*{display: table-cell; vertical-align: middle;}
+    #{$root}_vertical_t > & >*{vertical-align: top;}
+    #{$root}_vertical_b > & >*{vertical-align: bottom;}
+  }
+}
+
+// Reset indents of the (first and last) child
+@mixin inMg0 {
+  > *:first-child {margin-top: 0}
+  > *:last-child {margin-bottom: 0}
+  > *.last-child {margin-bottom: 0}
+}
+
+// ***
+  // Центрирование блока (по высоте-ширине) в нутри другого
+  // @example: http://codepen.io/podolskiis/pen/wovVPx
+@mixin centered {
+  text-align: center;
+  white-space: nowrap;
+  &:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.25em; }
+  &>* {
+    white-space: normal;
+    display: inline-block;
+    vertical-align: middle; }
+}
+
+@mixin video-responsive {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  iframe, object, embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
+}
+
+
+// Responsive image
+//
+// Keep images from scaling beyond the width of their parents.
+@mixin img-responsive($display: block) {
+  display: $display;
+  max-width: 100%; // Part 1: Set a maximum relative to the parent
+  height: auto; // Part 2: Scale the height according to the width, otherwise you get stretching
+}
+
+// Deprecated as of v3.0.1 (has been removed in v4)
+@mixin hide-text() {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+// New mixin to use as of v3.0.1
+@mixin text-hide() {
+  @include hide-text;
+}

@@ -1,0 +1,28 @@
+// Convert pixels to em
+@function ems($pxval, $base: $tm_fz_d) {
+  @if not unitless($pxval) {
+    $pxval: strip-units($pxval);
+  }
+  @if not unitless($base) {
+    $base: strip-units($base);
+  }
+  @return ($pxval / $base) * 1em;
+}
+
+// For multiSize
+@function pxEm($size,$px) {
+  @if $px == px {
+    @return $size + $px;
+  }
+  @else if $px == em {
+    @return ems($size);
+  }
+}
+
+// Convert pixel
+@function px($pxval) {
+  @if not unitless($pxval) {
+    $pxval: strip-units($pxval);
+  }
+  @return ($pxval) * 1px;
+}

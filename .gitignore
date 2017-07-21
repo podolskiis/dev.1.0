@@ -1,0 +1,9 @@
+## Folders
+node_modules/
+app/bower/
+build/
+dist/
+www/
+
+## Files
+.DS_Store

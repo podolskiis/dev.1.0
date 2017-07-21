@@ -1,0 +1,38 @@
+.btn
+  background-color: transparent
+  outline: none
+  padding: 0
+  border: 0
+  text-align: center
+  display: inline-block
+  position: relative
+  white-space: nowrap
+  cursor: pointer
+  text-decoration: none !important
+  box-sizing: inherit
+  vertical-align: middle
+  font-weight: $tm_fw_d
+  font-family: $tm_ff_d
+  color: $tm_color_d
+  &:hover
+    text-decoration: none
+  & input
+    background: none
+    border: 0
+    padding: 0
+    position: absolute
+    top: 0
+    right: 0
+    left: 0
+    bottom: 0
+    width: 100%
+    height: 100%
+    opacity: 0
+  // BUTTON GROUP
+  &--default
+    background: blue
+    padding: 0 15px
+    font-family: $tm_ff_d
+    color: #fff
+    &:hover
+      background: #0cc

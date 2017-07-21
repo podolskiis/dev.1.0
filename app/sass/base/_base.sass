@@ -1,0 +1,29 @@
+// BASIC PROJECT
+html
+  font-size: 100%
+  overflow-y: scroll
+
+body
+  margin: 0
+  padding: 0
+  background: #fff
+  font-family: $tm_ff_d
+  font-size: em($tm_fz_d)
+  font-weight: $tm_fw_d
+  line-height: $tm_lh_d
+  color: $tm_color_d
+
+  // PIXEL PERFECT
+  // @include bg('1.jpg',50%)
+  // opacity: .7
+
+html, body
+  height: 100%
+  @if $tm_fix_width_site
+    min-width: $tm_fix_width_site
+  @else
+    min-width: 300px
+
+.container
+  @if $tm_fix_width_site
+    width: $tm_fix_width_site !important

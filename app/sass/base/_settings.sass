@@ -1,0 +1,70 @@
+// Typography
+@include titleSize((36,30,24,18,14,12))
+h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6
+  margin: ems($tm_mg_p) 0 ems($tm_mg_p/2)
+h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,
+b,strong,th,dt
+  // styles ...
+p,pre,ul,ol,dl,hr,.p
+  margin: ems($tm_mg_p) 0
+a
+  color: $tm_color_link_a
+  text-decoration: underline
+  &:hover
+    color: $tm_color_link_b
+a,input,textarea,button,.btn
+  +tsn(.3)
+[class^="svg-"], [class*=" svg-"]
+  rect, path
+    +tsnSvg(stroke,.3)
+
+// Multi Indents
++mi('lh-', em, 0 20 30 34)
++mi('fz-', em, 0 10 11 12 13 15)
++mi('mg-t-', em, 0 5 10 15 20 25 30)
++mi('mg-b-', em, 0 5 10 15 20 25 30)
++mi('mg-tb-', em, 0 5 10 15 20 25 30)
++mi('pg-t-', em, 0 5 10 15 20 25 30)
++mi('pg-b-', em, 0 5 10 15 20 25 30)
++mi('pg-tb-', em, 0 5 10 15 20 25 30)
++mi('pg-l-', em, 0 5 10 15 20 25 30)
++mi('pg-r-', em, 0 5 10 15 20 25 30)
++mi('pg-lr-', em, 0 5 10 15 20 25 30)
+
+.bg-color
+  &--white
+    background-color: #fff !important
+  &--black
+    background-color: #000 !important
+.text-color
+  &--white
+    color: #fff !important
+  &--black
+    color: #000 !important
+  &--a,
+  &--accent
+    color: $tm_color_a !important
+  &--b
+    color: $tm_color_b !important
+  &--d
+    color: $tm_color_d !important
+  &--link
+    color: $tm_color_link_a !important
+.wrap
+  margin-left: auto
+  margin-right: auto
+  &--w800
+    max-width: 800px
+.img-responsive
+  +img-responsive
+.video-responsive
+  +video-responsive
+.table-responsive
+  width: 100%
+  overflow-y: hidden
+  overflow-x: auto
+  -ms-overflow-style: -ms-autohiding-scrollbar
+  -webkit-overflow-scrolling: touch
+  padding-bottom: 17px
+  margin-bottom: -17px
+  position: relative

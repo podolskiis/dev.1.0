@@ -1,0 +1,21 @@
+//- BASE MIXINS
+
+//- connection files
+mixin links(...files)
+  each file in files
+    link(rel="stylesheet" href=file)
+mixin scripts(...files)
+  each file in files
+    script(src=file)
+
+//- Current page
+mixin pageTitle(...tit)
+  - title = tit[tit.length-1]
+  - activeMenu = tit
+  each item in menu_main
+    if (item.val == tit[0])
+      - pageClass = item.url.slice(0,item.url.lastIndexOf('.'));
+      - bodyClasses.splice(0, 0, ['page_'+pageClass]);
+
+//- Connection mixin to main
+block mixins

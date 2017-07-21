@@ -1,0 +1,17 @@
+.container {
+  @include clearfix;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: ($gutter-container/2);
+  padding-right: ($gutter-container/2);
+
+  @media (min-width: $gl-md) {
+    width: $container-sm;
+  }
+  @media (min-width: $gl-lg) {
+    width: $container-md;
+  }
+  @media (min-width: $gl-xl) {
+    width: $container-lg;
+  }
+}

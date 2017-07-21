@@ -1,0 +1,168 @@
+// PREVIEW THEME
+.s-header,
+.s-footer
+  background: #9ACD32
+
+// TITLE
+.title--default
+
+// SLIDER
+.slider
+.slider--default
+
+// LIST
+.list-reset
+  list-style: none
+  padding: 0
+  margin: 0
+
+
+// BLOCK
+.b-logo
+  margin: 0
+  display: inline-block
+  line-height: 0
+  vertical-align: top
+  &__link
+    text-decoration: none
+    color: $tm_color_d
+    display: block
+    &:hover
+      text-decoration: none
+      color: inherit
+.b-main-menu
+  $rootParent: &
+  $navHt: 38px
+  ul
+    @extend .clearfix
+    list-style: none
+  &__list
+    margin: 0
+    padding: 0
+  &__item
+    position: relative
+    float: left
+  &__link
+    color: $tm_color_d
+    line-height: $navHt
+    text-decoration: none !important
+    display: block
+    background: #ddd
+    padding: 0 15px
+    &:hover,
+    #{$rootParent}__item.active &
+      color: #fff
+      background: #999
+  &__submenu
+    display: none
+    position: absolute
+    z-index: 99
+    width: 220px
+    #{$rootParent}__item:hover > &,
+    #{$rootParent}-submenu__item:hover > &
+      display: block
+    #{$rootParent}__submenu &
+      top: 0
+      left: 100%
+  &-submenu
+    margin: 0
+    padding: 10px 0
+    background: #ddd
+    box-shadow: 1px 1px 3px rgba(#000,.3)
+    &__item
+      position: relative
+    &__link
+      display: block
+      padding: 10px 15px
+.b-panel
+  background: #9ACD32
+  padding: 15px
+  margin-bottom: 15px
+  &__title
+    margin-top: 0
+.b-phone
+  text-decoration: none !important
+  color: $tm_color_d
+  white-space: nowrap
+  &__cod
+    color: #fff
+  &__num
+    font-weight: 700
+.b-footer-menu
+  &__list
+    list-style-type: none
+    margin: 0 -10px
+    padding: 0
+    display: flex
+    flex-flow: row wrap
+    justify-content: center //space-between
+  &__item
+    position: relative
+    margin: 0 10px
+  &__link
+    display: block
+.b-copyright
+.b-developer
+.b-table-responsive-default
+  overflow-x: auto
+  &::-webkit-scrollbar
+    +z(5px)
+  &::-webkit-scrollbar-track
+      background-color: #eee
+  &::-webkit-scrollbar-thumb
+      background-color: #ddd
+
+// SECTION
+.s-default
+  position: relative
+  background: #fff
+  padding: 50px 0
+.s-header
+  padding: 20px 0
+  a
+    &:hover
+      //
+.s-footer
+  padding: 20px 0
+  a
+    &:hover
+      //
+  @at-root
+    // FOOTER FIXED
+    .page-wrap
+      display: flex
+      flex-direction: column
+      height: 100vh
+      > *
+        flex-shrink: 0
+      > .s-main
+        flex: 1 0 auto
+
+// MODALL
+.modall
+  a,button:focus:after
+    outline: none
+.modall--animation
+  opacity: 0
+  transform: translateY(-50px)
+  transition: all .3s
+  .fancybox-slide--complete &
+    opacity: 1
+    transform: translateY(0)
+.modall--default
+  background: #fff
+  padding: 40px 50px
+  max-width: 700px
+  @media (max-width: 479px)
+    padding: 20px
+  .modall
+    &__title
+      // @extend .title--default
+.modall--form
+
+
+
+.col--xs-fit
+  flex-shrink: 0
+.col--xs-fill
+  flex-shrink: 0

@@ -1,0 +1,29 @@
+// Grid breakpoints
+$gl-xs: 0;
+$gl-sm: 480px;
+$gl-md: 768px;
+$gl-lg: 992px;
+$gl-xl: 1200px;
+$breakpoints: (xs: $gl-xs, sm: $gl-sm, md: $gl-md, lg: $gl-lg, xl: $gl-xl) !default;
+
+// Number of columns
+$columns:                   12 !default;
+
+// Gutter of columns (15px 0.9375rem) (16px 1rem) (20px 1.25rem) (30px 1.875rem) (40px 2.5rem)
+$gl-gutter:                 1.25rem !default;
+
+
+//== Container sizes
+$gutter-container:          $gl-gutter !default;
+
+// Small screen / tablet
+$container-tablet:          (rem(720px) + $gutter-container) !default;
+$container-sm:              $container-tablet !default;
+
+// Medium screen / desktop
+$container-desktop:         (rem(940px) + $gutter-container) !default;
+$container-md:              $container-desktop !default;
+
+// Large screen / wide desktop
+$container-large-desktop:   (rem(1140px) + $gutter-container) !default;
+$container-lg:              $container-large-desktop !default;
