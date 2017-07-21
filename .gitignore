@@ -6,4 +6,5 @@ dist/
 www/
 
 ## Files
-._.DS_Store
+*.DS_Store
+./**/*.DS_Store
