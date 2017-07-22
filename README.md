@@ -8,7 +8,7 @@
 
 > Как запустить "Start Project"?
 
-1. git clone https://github.com/podolskiis/start_flexbox.git
+1. git clone https://github.com/podolskiis/start_1.0
 2. $ npm i
 3. $ bower i
 4. $ gulp
